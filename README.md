@@ -75,7 +75,7 @@ The Docker containers serve the stateless MyNextBus API and this service is made
 
 * Clone this git repository via:
     ```
-    git clone blah
+    git clone git@github.com:onelittlehope/CodingChallenge.git
     ```
 
 
@@ -158,14 +158,16 @@ The Docker containers serve the stateless MyNextBus API and this service is made
 
 * On the dashboard you should see the **mynextbus-rc** Replication Controller running 1 pod:
 
-<placeholder>
+    ![01_replication_controller](https://cloud.githubusercontent.com/assets/3677874/21597470/145aa49a-d143-11e6-92d8-1d9667e82e4b.png)
 
 
 * You can use the Actions menu to scale the replication controller to run more than one pod:
 
-<placeholder>
-<placeholder>
-<placeholder>
+    ![02_scale_replication_controller](https://cloud.githubusercontent.com/assets/3677874/21597475/3fb08858-d143-11e6-9367-2829b29b839c.png)
+
+    ![03_scale_replication_controller](https://cloud.githubusercontent.com/assets/3677874/21597496/90c81832-d143-11e6-88f7-3ab6d4b3fcdd.png)
+
+    ![04_scale_replication_controller](https://cloud.githubusercontent.com/assets/3677874/21597501/9d583c6c-d143-11e6-8330-83486090939c.png)
 
 
 * To access the LoadBalanced MyNextBus service, you need to run the following command:
@@ -177,13 +179,16 @@ The Docker containers serve the stateless MyNextBus API and this service is made
 
     This is needed because minicube doesn't have the ability to setup an external load balancer (yet) according to the following issue: [https://github.com/kubernetes/minikube/issues/384](https://github.com/kubernetes/minikube/issues/384)
 
-<placeholder>
-<placeholder>
+    ![05_mynextbus_service](https://cloud.githubusercontent.com/assets/3677874/21597512/c79dff7a-d143-11e6-9094-325b94a1f96b.png)
+
+    ![06_mynextbus_service](https://cloud.githubusercontent.com/assets/3677874/21597514/d2aaf4d6-d143-11e6-9d9a-c800c6d03cb9.png)
 
 
 * You can confirm that Kubernetes is load balancing requests across the different pods by looking at each pods logs after making several requests to the MyNextBus service.
 
-<placeholder>
+    ![07_kubernetes_pod_logs](https://cloud.githubusercontent.com/assets/3677874/21597524/f845f484-d143-11e6-939f-905c604c53e0.png)
+
+    ![08_kubernetes_pod_logs](https://cloud.githubusercontent.com/assets/3677874/21597529/032092ba-d144-11e6-9933-e8fec901878d.png)    
 
 
 ## Notes
@@ -214,7 +219,7 @@ The above is a proof of concept of how Kubernetes could be used to setup a scala
     ```
 
 
-* Requirement 5 of coding challenge requires that the NextBusXMLFeed service be accessed via a caching HTTP proxy which will stop the NextBusXMLFeed service from being hurt as the same requests won't be made more than the configured caching interval period. This requirement has not been met as I've run out of time to document setting up a Varnish caching http proxy. I've put in code in the config.py which allows you to setup a http or httpd proxy and this can also be controlled via the HTTP_PROXY + HTTPS_PROXY environment variables but I've not setup a caching proxy to test that this requirement is met.
+* Requirement 5 of coding challenge requires that the NextBusXMLFeed service be accessed via a caching HTTP proxy which will stop the NextBusXMLFeed service from being hurt as the same requests won't be made more than the configured caching interval period. This requirement has not been met as I've run out of time to document setting up a Varnish caching http proxy. I've put in code in the config.py which allows you to setup a http or https proxy and this can also be controlled via the HTTP_PROXY + HTTPS_PROXY environment variables but I've not setup a caching proxy to test that this requirement is met.
 
 
 Lastly, I've not implemented any unit tests for the api due to time constraints.
